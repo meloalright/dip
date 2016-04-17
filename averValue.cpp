@@ -1,8 +1,8 @@
 #include<stdio.h>
 #include <iostream>
 using namespace std;
-#define H 256
-#define W 256
+#define H 512
+#define W 512
 struct{
       unsigned char B,G,R;
 }pp,Pixel[H][W];
@@ -12,7 +12,7 @@ int main()
     FILE *inputfile,*outfile;
 	char filehead[54];
 	int i,j;
-	inputfile = fopen("addNoise.bmp","rb");//处理已经加噪声文件
+	inputfile = fopen("ori/lady.bmp","rb");//处理已经加噪声文件
 	fread(filehead,1,54,inputfile);
 	int grayTmp;
 	for(i = 0;i<H;i++)
@@ -31,7 +31,7 @@ int main()
 			Pixel[i][j].B = getAverage(Pixel[i-1][j-1].B,Pixel[i-1][j].B,Pixel[i-1][j+1].B,Pixel[i][j-1].B,Pixel[i][j].B,Pixel[i][j+1].B,Pixel[i+1][j-1].B,Pixel[i+1][j].B,Pixel[i+1][j+1].B);
 		}
 	}
-	outfile=fopen("removeNoise_averValueFilter.bmp","wb");
+	outfile=fopen("averValue.bmp","wb");
 	fwrite(filehead,1,54,outfile);
 	for(i = 0;i<H;i++)
 		for(j=0;j<W;j++)
