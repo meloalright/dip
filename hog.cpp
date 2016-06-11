@@ -10,7 +10,7 @@ struct{
 double sobel_X(int a0,int a1,int a2,int a3,int a4,int a5,int a6,int a7,int a8);
 double sobel_Y(int a0,int a1,int a2,int a3,int a4,int a5,int a6,int a7,int a8);
 double sobel(int a0,int a1,int a2,int a3,int a4,int a5,int a6,int a7,int a8);
-
+void hog(int a0,int a1,int a2,int a3,int a4,int a5,int a6,int a7,int a8);
 int main()
 {
     FILE *inputfile,*outfile;
@@ -33,17 +33,18 @@ int main()
 	for(i = 0;i<H;i++){
 		for(j=0;j<W;j++)
 		{
-			px[i][j].R = sobel(Pixel[i-1][j-1].R,Pixel[i][j-1].R,Pixel[i+1][j-1].R,Pixel[i-1][j].R,Pixel[i][j].R,Pixel[i+1][j].R,Pixel[i-1][j+1].R,Pixel[i][j+1].R,Pixel[i+1][j+1].R);
-			px[i][j].G = px[i][j].R;
-			px[i][j].B = px[i][j].R;
+			hog(Pixel[i-1][j-1].R,Pixel[i][j-1].R,Pixel[i+1][j-1].R,Pixel[i-1][j].R,Pixel[i][j].R,Pixel[i+1][j].R,Pixel[i-1][j+1].R,Pixel[i][j+1].R,Pixel[i+1][j+1].R);
+			//px[i][j].R = sobel(Pixel[i-1][j-1].R,Pixel[i][j-1].R,Pixel[i+1][j-1].R,Pixel[i-1][j].R,Pixel[i][j].R,Pixel[i+1][j].R,Pixel[i-1][j+1].R,Pixel[i][j+1].R,Pixel[i+1][j+1].R);
+			//px[i][j].G = px[i][j].R;
+			//px[i][j].B = px[i][j].R;
 			
 		}
 	}
 	outfile=fopen("sobel.bmp","wb");
-	fwrite(filehead,1,54,outfile);
+	/*fwrite(filehead,1,54,outfile);
 	for(i = 0;i<H;i++)
 		for(j=0;j<W;j++)
-			fwrite(&px[i][j],1,3,outfile);
+			fwrite(&px[i][j],1,3,outfile);*/
 	fclose(outfile);
 	fclose(inputfile);
 	return 0;
@@ -68,4 +69,15 @@ double sobel(int a0,int a1,int a2,int a3,int a4,int a5,int a6,int a7,int a8){
 	else{
 		return 0;
 	}
+}
+void hog(int a0,int a1,int a2,int a3,int a4,int a5,int a6,int a7,int a8){
+	double x = sobel_X(a0,a1,a2,a3,a4,a5,a6,a7,a8);
+	double y = sobel_Y(a0,a1,a2,a3,a4,a5,a6,a7,a8);
+	cout << "gx = " << x << endl;
+	cout << "gy = " << y << endl;
+	double theta = atan (x/y) * 180 / 3.14;
+	if(theta<0){
+		theta += 180;
+	}
+	cout << "theta = " << theta  << "度" << endl;
 }
