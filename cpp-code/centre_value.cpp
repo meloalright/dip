@@ -31,7 +31,7 @@ int main()
 			Pixel[i][j].B = getCentre(Pixel[i-1][j-1].B,Pixel[i-1][j].B,Pixel[i-1][j+1].B,Pixel[i][j-1].B,Pixel[i][j].B,Pixel[i][j+1].B,Pixel[i+1][j-1].B,Pixel[i+1][j].B,Pixel[i+1][j+1].B);
 		}
 	}
-	outfile=fopen("centreValue.bmp","wb");
+	outfile=fopen("centre_value.bmp","wb");
 	fwrite(filehead,1,54,outfile);
 	for(i = 0;i<H;i++)
 		for(j=0;j<W;j++)

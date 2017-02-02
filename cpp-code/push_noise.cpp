@@ -47,7 +47,7 @@ int main()
 			}
 		}
 	}
-	outfile=fopen("pushNoise.bmp","wb");
+	outfile=fopen("push_noise.bmp","wb");
 	fwrite(filehead,1,54,outfile);
 	for(i = 0;i<H;i++)
 		for(j=0;j<W;j++)
