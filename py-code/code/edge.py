@@ -33,6 +33,13 @@ magnitude = f.binary_low_pass(magnitude)
 dist = Image.fromarray(magnitude).convert('L')
 dist.save('../img/dist.bmp')
 
-
+#plot
+plt.subplot(121)
+plt.imshow(im,'gray')
+plt.title('original')
+plt.subplot(122)
+plt.imshow(dist,'gray')
+plt.title('after process')
+plt.show()
 
 
